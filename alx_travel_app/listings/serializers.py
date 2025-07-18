@@ -6,7 +6,7 @@ class ListingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Listing
-        fields = ['url', 'property_id', 'host', 'host_name', 'name', 'description', 'location', 'price_per_night', 'created_at', 'updated_at']
+        fields = ['property_id', 'host', 'host_name', 'name', 'description', 'location', 'price_per_night', 'created_at', 'updated_at']
 
     def get_host_name(self, obj):
         return f"{obj.host.first_name} {obj.host.last_name}"
@@ -16,7 +16,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ['url', 'booking_id', 'property', 'user', 'start_date', 'end_date', 'total_price', 'status', 'created_at']
+        fields = ['booking_id', 'property', 'user', 'start_date', 'end_date', 'total_price', 'status', 'created_at']
 
     def validate_status(self, value):
         """
