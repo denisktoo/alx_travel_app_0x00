@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Listing, Booking
 
-class ListingSerializer(serializers.HyperlinkedModelSerializer):
+class ListingSerializer(serializers.ModelSerializer):
     host_name = serializers.SerializerMethodField()
 
     class Meta:
@@ -11,7 +11,7 @@ class ListingSerializer(serializers.HyperlinkedModelSerializer):
     def get_host_name(self, obj):
         return f"{obj.host.first_name} {obj.host.last_name}"
 
-class BookingSerializer(serializers.HyperlinkedModelSerializer):
+class BookingSerializer(serializers.ModelSerializer):
     status = serializers.CharField()
 
     class Meta:
