@@ -16,8 +16,8 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING('⚠️ No users found. Creating default user...'))
             host = User.objects.create_user(
                 username='defaultuser',
-                email='defaultuser@example.com',
-                password='password123'
+                email='defaultuser@gmail.com',
+                password='password@123'
             )
             self.stdout.write(self.style.SUCCESS(f'✅ Default user created: {host.username}'))
 
