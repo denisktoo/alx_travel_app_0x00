@@ -9,11 +9,17 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         self.stdout.write(self.style.SUCCESS('🌱 Seeding sample listings...'))
 
-        # Use the first available user as the host
+        # Try to get the first user
         host = User.objects.first()
+
         if not host:
-            self.stdout.write(self.style.ERROR('❌ No users found. Please create a user first.'))
-            return
+            self.stdout.write(self.style.WARNING('⚠️ No users found. Creating default user...'))
+            host = User.objects.create_user(
+                username='defaultuser',
+                email='defaultuser@example.com',
+                password='password123'
+            )
+            self.stdout.write(self.style.SUCCESS(f'✅ Default user created: {host.username}'))
 
         # Create 10 sample listings
         for i in range(10):
